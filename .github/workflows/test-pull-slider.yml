@@ -52,6 +52,8 @@ jobs:
           ls
           echo "Running 7z"
           pwd
+          cd prusaslicer-linux
+          ls
 
       - uses: actions/upload-artifact@v4
         with:
