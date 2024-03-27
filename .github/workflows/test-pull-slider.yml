@@ -8,6 +8,12 @@ on:
         required: true
         type: string
 
+defaults:
+  run:
+    shell: bash
+    working-directory: .
+        
+
 jobs:
   prusaslicer:
     name: Pull-Assets
@@ -47,19 +53,16 @@ jobs:
           ls
           echo "Running 7z"
           pwd
-          sudo 7z x ./prusaslicer.dmg -oprusaslicer
-          echo "7z the file"
-          ls
-          cp prusaslicer/Original\ Prusa\ Driver/Original\ Prusa\ Driver/PrusaSlicer.app prusaslicer-macos
+
       - uses: actions/upload-artifact@v3
         with:
-          name: prusaslider-linux
+          name: prusaslicer-linux
           path: prusaslicer-linux
       - uses: actions/upload-artifact@v3
         with:
-          name: prusaslider-windows
+          name: prusaslicer-windows
           path: prusaslicer-windows
       - uses: actions/upload-artifact@v3
         with:
-          name: prusaslider-macos
+          name: prusaslicer-macos
           path: prusaslicer.dmg
