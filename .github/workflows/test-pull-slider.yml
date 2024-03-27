@@ -59,7 +59,7 @@ jobs:
           echo "Unzipping DMG"
           7z x prusaslicer-mac.dmg -oprusaslicer-mac-dmg
           echo "Pull out contents"
-          cp prusaslicer-mac-dmg/Original\ Prusa\ Drivers/Original\ Prusa\ Drivers  prusaslicer-mac
+          cp prusaslicer-mac-dmg/Original\ Prusa\ Drivers/Original\ Prusa\ Drivers  prusaslicer-mac -r
           ls *
           cd prusaslicer-mac
 
