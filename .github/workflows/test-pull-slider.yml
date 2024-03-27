@@ -62,9 +62,10 @@ jobs:
           echo "Found DMG"
           mv prusaslicer-assets/prusaslicer-mac.dmg prusaslicer-mac.dmg
           ls *
-          7z x prusaslicer-mac.dmg prusaslicer-mac
-          cd prusaslicer-mac
+          7z x prusaslicer-mac.dmg -oprusaslicer-mac
+          echo "Unzipped DMG"
           ls *
+          cd prusaslicer-mac
 
       - uses: actions/upload-artifact@v4
         with:
