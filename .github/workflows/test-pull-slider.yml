@@ -44,7 +44,6 @@ jobs:
           out-file-path: "prusaslicer.dmg"
           extract: true
       - name: Extract DMG
-        if: false
         run: |
           ls
           echo "Install 7z"
