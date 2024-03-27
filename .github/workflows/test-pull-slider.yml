@@ -20,55 +20,40 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: robinraju/release-downloader@v1.8
-        name: Pull Linux Build
+        name: Pull All Release Assets
         with:
           repository: "prusa3d/PrusaSlicer"
           tag: "version_${{inputs.version}}"
-          out-file-path: "prusaslicer-raw"
-      - uses: robinraju/release-downloader@v1.8
-        name: Pull Linux Build
-        with:
-          repository: "prusa3d/PrusaSlicer"
-          tag: "version_${{inputs.version}}"
-          out-file-path: "prusaslicer-unzipped"
-          extract: true
-      - uses: robinraju/release-downloader@v1.8
-        name: Pull Linux Build
-        with:
-          repository: "prusa3d/PrusaSlicer"
-          tag: "version_${{inputs.version}}"
-          fileName: "PrusaSlicer-${{inputs.version}}+linux-arm64*.tar.bz2"
-          out-file-path: "prusaslicer-linux"
-          extract: true
-      - uses: robinraju/release-downloader@v1.8
-        name: Pull Windows Build
-        with:
-          repository: "prusa3d/PrusaSlicer"
-          tag: "version_${{inputs.version}}"
-          fileName: "PrusaSlicer-${{inputs.version}}+win64*.zip"
-          out-file-path: "prusaslicer-windows"
-          extract: true
-      - uses: robinraju/release-downloader@v1.8
-        name: Pull MacOS DMG
-        with:
-          repository: "prusa3d/PrusaSlicer"
-          tag: "version_${{inputs.version}}"
-          fileName: "PrusaSlicer-${{inputs.version}}+MacOS*.dmg"
-          out-file-path: "prusaslicer.dmg"
-          extract: true
-      - name: Extract DMG
+          out-file-path: "prusaslicer-assets"
+      - name: Extract Linux files
         run: |
-          ls
-          echo "Install 7z"
-          sudo apt-get install -y p7zip-full p7zip-rar
-          echo "Installed 7z"
           ls *
-          echo "Running 7z"
-          pwd
-          cd prusaslicer-linux
-          echo "Inside linux prusaslicer"
-          ls
-          echo "Did it have contents?"
+          cd prusaslicer-assets
+          for f in PrusaSlicer-${{inputs.version}}+linux-arm64*.tar.bz2; do mv "$f" "prusaslicer-linux.tar.bz2" ; done
+          cd ..
+          mv prusaslicer-assets/prusaslicer-linux.tar.bz2 prusaslicer-linux.tar.bz2
+          7z x prusaslicer-linux.tar.bz2
+          ls *
+      - name: Extract Windows files
+        run: |
+          ls *
+          cd prusaslicer-assets
+          for f in PrusaSlicer-${{inputs.version}}+win64*.zip; do mv "$f" "prusaslicer-windows.zip" ; done
+          cd ..
+          mv prusaslicer-assets/prusaslicer-linux.tar.bz2 prusaslicer-linux.tar.bz2
+          7z x prusaslicer-windows.zip
+          ls *
+      - name: Extract DMG Files
+        run: |
+          ls *
+          ls *
+          cd prusaslicer-assets
+          for f in PrusaSlicer-${{inputs.version}}+MacOS*.dmg; do mv "$f" "prusaslicer-mac.dmg" ; done
+          cd ..
+          mv prusaslicer-assets/prusaslicer-mac.dmg prusaslicer-mac.dmg
+          7z x prusaslicer-mac.dmg prusaslicer-mac
+          cd prusaslicer-mac
+          ls *
 
       - uses: actions/upload-artifact@v4
         with:
