@@ -42,7 +42,9 @@ jobs:
           sudo apt-get install -y p7zip-full p7zip-rar
           echo "Installed 7z"
           ls
-          7z x prusaslicer.dmg -oprusaslicer
+          sudo 7z x prusaslicer.dmg -oprusaslicer
+          echo "7z the file"
+          ls
           cp prusaslicer/Original\ Prusa\ Driver/Original\ Prusa\ Driver/PrusaSlicer.app prusaslicer-macos
       - uses: actions/upload-artifact@v3
         with:
