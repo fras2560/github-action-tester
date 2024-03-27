@@ -36,6 +36,7 @@ jobs:
           tag: "version_${{inputs.version}}"
           fileName: "PrusaSlicer-${{inputs.version}}+MacOS*.dmg"
           out-file-path: "prusaslicer.dmg"
+          extract: true
       - name: Extract DMG
         run: |
           echo "Install 7z"
