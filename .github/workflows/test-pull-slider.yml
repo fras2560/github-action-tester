@@ -38,7 +38,10 @@ jobs:
           out-file-path: "prusaslicer-dmg"
       - name: Extract DMG
         run: |
+          echo "Install 7z"
           sudo apt-get install -y p7zip-full p7zip-rar
+          echo "Installed 7z"
+          ls
           7z x prusaslicer-dmg prusaslicer
           cp prusaslicer/Original\ Prusa\ Driver/Original\ Prusa\ Driver/PrusaSlicer.app prusaslicer-macos
       - uses: actions/upload-artifact@v3
