@@ -37,14 +37,11 @@ jobs:
           fileName: "PrusaSlicer-${{inputs.version}}+MacOS*.dmg"
           out-file-path: "prusaslicer.dmg"
           extract: true
+      - uses: edgarrc/action-7z@v1
+        with:
+          args: 7z x prusaslicer.dmg -oprusaslicer
       - name: Extract DMG
         run: |
-          echo "Install 7z"
-          sudo apt-get install -y p7zip-full p7zip-rar
-          echo "Installed 7z"
-          ls
-          echo "Running 7z"
-          sudo 7z x prusaslicer.dmg -oprusaslicer
           echo "7z the file"
           ls
           cp prusaslicer/Original\ Prusa\ Driver/Original\ Prusa\ Driver/PrusaSlicer.app prusaslicer-macos
