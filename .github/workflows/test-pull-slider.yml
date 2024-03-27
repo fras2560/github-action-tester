@@ -54,11 +54,14 @@ jobs:
       - name: Extract DMG Files
         run: |
           ls *
-          ls *
+          echo "Finding DMG for MacOS"
           cd prusaslicer-assets
           for f in PrusaSlicer-${{inputs.version}}+MacOS*.dmg; do mv "$f" "prusaslicer-mac.dmg" ; done
+          ls *
           cd ..
+          echo "Found DMG"
           mv prusaslicer-assets/prusaslicer-mac.dmg prusaslicer-mac.dmg
+          ls *
           7z x prusaslicer-mac.dmg prusaslicer-mac
           cd prusaslicer-mac
           ls *
