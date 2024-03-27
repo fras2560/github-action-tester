@@ -28,20 +28,28 @@ jobs:
       - name: Extract Linux files
         run: |
           ls *
+          echo "Finding asset tar for linux arm64"
           cd prusaslicer-assets
           for f in PrusaSlicer-${{inputs.version}}+linux-arm64*.tar.bz2; do mv "$f" "prusaslicer-linux.tar.bz2" ; done
           cd ..
           mv prusaslicer-assets/prusaslicer-linux.tar.bz2 prusaslicer-linux.tar.bz2
-          tar -xf prusaslicer-linux.tar.bz2
+          echo "Unzipping tar asset for linux arm64"
+          tar -xf prusaslicer-linux.tar.bz2          
+          echo "Renaming asset"
+          for f in PrusaSlicer-${{inputs.version}}+linux-arm64*; do mv "$f" "prusaslicer-linux" ; done
           ls *
       - name: Extract Windows files
         run: |
           ls *
+          echo "Finding asset tar for windows 64-bit"
           cd prusaslicer-assets
           for f in PrusaSlicer-${{inputs.version}}+win64*.zip; do mv "$f" "prusaslicer-windows.zip" ; done
           cd ..
           mv prusaslicer-assets/prusaslicer-windows.zip prusaslicer-windows.zip
+          echo "Unzipping windows asset"
           7z x prusaslicer-windows.zip
+          echo "Renaming asset"
+          for f in PrusaSlicer-${{inputs.version}}+windows*; do mv "$f" "prusaslicer-windows" ; done
           ls *
       - name: Extract DMG Files
         run: |
