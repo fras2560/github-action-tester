@@ -38,6 +38,7 @@ jobs:
           out-file-path: "prusaslicer.dmg"
           extract: true
       - name: Extract DMG
+        if: false
         run: |
           ls
           echo "Install 7z"
@@ -61,4 +62,4 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: prusaslider-macos
-          path: prusaslicer-macos
+          path: prusaslicer.dmg
