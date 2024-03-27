@@ -30,6 +30,13 @@ jobs:
         with:
           repository: "prusa3d/PrusaSlicer"
           tag: "version_${{inputs.version}}"
+          out-file-path: "prusaslicer-unzipped"
+          extract: true
+      - uses: robinraju/release-downloader@v1.8
+        name: Pull Linux Build
+        with:
+          repository: "prusa3d/PrusaSlicer"
+          tag: "version_${{inputs.version}}"
           fileName: "PrusaSlicer-${{inputs.version}}+linux-arm64*.tar.bz2"
           out-file-path: "prusaslicer-linux"
           extract: true
