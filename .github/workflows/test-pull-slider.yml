@@ -56,12 +56,12 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: prusaslicer-linux
-          path: prusaslicer-linux/
+          path: ${{ github.workspace }}/prusaslicer-linux
       - uses: actions/upload-artifact@v4
         with:
           name: prusaslicer-windows
-          path: prusaslicer-windows/
+          path: ${{ github.workspace }}/prusaslicer-windows
       - uses: actions/upload-artifact@v4
         with:
           name: prusaslicer-macos
-          path: prusaslicer.dmg
+          path: ${{ github.workspace }}/prusaslicer.dmg
