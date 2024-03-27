@@ -55,7 +55,7 @@ jobs:
           echo "Install 7z"
           sudo apt-get install -y p7zip-full p7zip-rar
           echo "Installed 7z"
-          ls
+          ls *
           echo "Running 7z"
           pwd
           cd prusaslicer-linux
