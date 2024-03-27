@@ -1,0 +1,55 @@
+name: Pull Prusaslicer release and upload artifacts
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'The version of prusaslicer to pull (X.X.X)'
+        required: true
+        type: string
+
+jobs:
+  prusaslicer:
+    name: Pull-Assets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: robinraju/release-downloader@v1.9
+        name: Pull Linux Build
+        with:
+          repository: "prusa3d/PrusaSlicer"
+          tag: "version_${{inputs.version}}"
+          fileName: "PrusaSlicer-${{inputs.version}}+linux-arm64*.tar.bz2"
+          out-file-path: "prusaslicer-linux"
+          extract: true
+      - uses: robinraju/release-downloader@v1.9
+        name: Pull Windows Build
+        with:
+          repository: "prusa3d/PrusaSlicer"
+          tag: "version_${{inputs.version}}"
+          fileName: "PrusaSlicer-${{inputs.version}}+win64*.zip"
+          out-file-path: "prusaslicer-windows"
+          extract: true
+      - uses: robinraju/release-downloader@v1.9
+        name: Pull MacOS DMG
+        with:
+          repository: "prusa3d/PrusaSlicer"
+          tag: "version_${{inputs.version}}"
+          fileName: "PrusaSlicer-${{inputs.version}}+MacOS*.dmg"
+          out-file-path: "prusaslicer-dmg"
+      - name: Extract DMG
+        run: |
+          sudo apt-get install -y p7zip-full p7zip-rar
+          7z x prusaslicer-dmg prusaslicer
+          cp prusaslicer/Original\ Prusa\ Driver/Original\ Prusa\ Driver/PrusaSlicer.app prusaslicer-macos
+      - uses: actions/upload-artifact@v3
+        with:
+          name: prusaslider-linux
+          path: prusaslicer-linux
+      - uses: actions/upload-artifact@v3
+        with:
+          name: prusaslider-windows
+          path: prusaslicer-windows
+      - uses: actions/upload-artifact@v3
+        with:
+          name: prusaslider-macos
+          path: prusaslicer-macos
