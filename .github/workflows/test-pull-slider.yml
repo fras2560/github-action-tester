@@ -19,7 +19,7 @@ jobs:
     name: Pull-Assets
     runs-on: ubuntu-latest
     steps:
-      - uses: robinraju/release-downloader@v1.9
+      - uses: robinraju/release-downloader@v1.8
         name: Pull Linux Build
         with:
           repository: "prusa3d/PrusaSlicer"
@@ -27,7 +27,7 @@ jobs:
           fileName: "PrusaSlicer-${{inputs.version}}+linux-arm64*.tar.bz2"
           out-file-path: "prusaslicer-linux"
           extract: true
-      - uses: robinraju/release-downloader@v1.9
+      - uses: robinraju/release-downloader@v1.8
         name: Pull Windows Build
         with:
           repository: "prusa3d/PrusaSlicer"
@@ -35,7 +35,7 @@ jobs:
           fileName: "PrusaSlicer-${{inputs.version}}+win64*.zip"
           out-file-path: "prusaslicer-windows"
           extract: true
-      - uses: robinraju/release-downloader@v1.9
+      - uses: robinraju/release-downloader@v1.8
         name: Pull MacOS DMG
         with:
           repository: "prusa3d/PrusaSlicer"
