@@ -53,15 +53,15 @@ jobs:
           echo "Running 7z"
           pwd
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: prusaslicer-linux
-          path: prusaslicer-linux
-      - uses: actions/upload-artifact@v3
+          path: prusaslicer-linux/
+      - uses: actions/upload-artifact@v4
         with:
           name: prusaslicer-windows
-          path: prusaslicer-windows
-      - uses: actions/upload-artifact@v3
+          path: prusaslicer-windows/
+      - uses: actions/upload-artifact@v4
         with:
           name: prusaslicer-macos
           path: prusaslicer.dmg
