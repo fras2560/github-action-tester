@@ -53,7 +53,9 @@ jobs:
           echo "Running 7z"
           pwd
           cd prusaslicer-linux
+          echo "Inside linux prusaslicer"
           ls
+          echo "Did it have contents?"
 
       - uses: actions/upload-artifact@v4
         with:
