@@ -49,7 +49,7 @@ jobs:
           echo "Unzipping windows asset"
           7z x prusaslicer-windows.zip
           echo "Renaming asset"
-          for f in PrusaSlicer-${{inputs.version}}+windows*; do mv "$f" "prusaslicer-windows" ; done
+          for f in PrusaSlicer-${{inputs.version}}+win64*; do mv "$f" "prusaslicer-windows" ; done
           ls *
       - name: Extract DMG Files
         run: |
