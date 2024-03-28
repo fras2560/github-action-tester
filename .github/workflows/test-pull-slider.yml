@@ -74,4 +74,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: prusaslicer-macos
-          path: ${{ github.workspace }}/prusaslicer.dmg
+          path: ${{ github.workspace }}/prusaslicer-mac
