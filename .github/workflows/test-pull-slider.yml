@@ -60,6 +60,8 @@ jobs:
           7z x prusaslicer-mac.dmg -oprusaslicer-mac-dmg
           echo "Pull out contents"
           cp prusaslicer-mac-dmg/Original\ Prusa\ Drivers/Original\ Prusa\ Drivers/  prusaslicer-mac -r
+          echo "Rename Icon file since it has carriage return"
+          mv './prusaslicer-mac/Icon'$'\r' ./prusaslicer-mac/Icon
           ls *
           cd prusaslicer-mac
 
