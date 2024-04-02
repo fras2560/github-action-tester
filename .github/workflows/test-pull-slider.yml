@@ -59,9 +59,7 @@ jobs:
           echo "Unzipping DMG"
           7z x prusaslicer-mac.dmg -oprusaslicer-mac-dmg
           echo "Pull out contents"
-          cp prusaslicer-mac-dmg/Original\ Prusa\ Drivers/Original\ Prusa\ Drivers/  prusaslicer-mac -r
-          echo "Rename Icon file since it has carriage return"
-          mv './prusaslicer-mac/Icon'$'\r' ./prusaslicer-mac/Icon
+          cp prusaslicer-mac-dmg/Original\ Prusa\ Drivers/Original\ Prusa\ Drivers/PrusaSlicer.app  PrusaSlicer.app -r
           ls *
           cd prusaslicer-mac
 
@@ -75,5 +73,5 @@ jobs:
           path: ${{ github.workspace }}/prusaslicer-windows
       - uses: actions/upload-artifact@v4
         with:
-          name: prusaslicer-macos
-          path: ${{ github.workspace }}/prusaslicer-mac
+          name: PrusaSlicer.app
+          path: ${{ github.workspace }}/PrusaSlicer.app
